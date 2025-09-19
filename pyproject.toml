@@ -1,0 +1,126 @@
+[project]
+name = "base"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Ahsen17", email = "ahsenedward@qq.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "msgspec",
+    "returns",
+    "ruff",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "build",
+    "twine"
+]
+
+[tool.ruff]
+# Recommended enterprise project settings
+line-length = 120
+indent-width = 4
+target-version = "py312"
+
+src = ["src"]
+
+# Exclude a bunch of files and directories that shouldn't be checked
+extend-exclude = [
+    "__pycache__",
+    ".git",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".tox",
+    ".venv",
+    "venv",
+    "env",
+    "build",
+    "dist",
+    "*.egg-info",
+]
+
+[tool.ruff.lint]
+# Enable enterprise-recommended linting rules
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # pyflakes
+    "I",      # isort
+    "C",      # mccabe
+    "B",      # flake8-bugbear
+    "Q",      # flake8-quotes
+    "SIM",    # flake8-simplify
+    "UP",     # pyupgrade
+    "PL",     # pylint
+    "N",      # pep8-naming
+    "A",      # flake8-builtins
+    "DTZ",    # flake8-datetimez
+    "G",      # flake8-logging-format
+    "ICN",    # flake8-import-conventions
+    "ISC",    # flake8-implicit-str-concat
+    "NPY",    # NumPy-specific rules
+    "PGH",    # pygrep-hooks
+    "PIE",    # flake8-pie
+    "PT",     # flake8-pytest-style
+    "PYI",    # flake8-pyi
+    "RUF",    # Ruff-specific rules
+    "S",      # flake8-bandit
+    "T10",    # flake8-debugger
+    "T20",    # flake8-print
+    "TCH",    # flake8-type-checking
+    "TID",    # flake8-tidy-imports
+]
+extend-ignore = [
+    "PLR",    # Design related pylint codes
+]
+# Allow fix for all enabled rules (when `--fix`) is provided
+fixable = ["ALL"]
+unfixable = []
+
+# Allow unused variables when underscore-prefixed
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.lint.mccabe]
+# Unlike Flake8, default to a complexity level of 10.
+max-complexity = 10
+
+[tool.ruff.lint.flake8-builtins]
+builtins-ignorelist = ["id", "type", "input", "help", "format"]
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
+inline-quotes = "double"
+multiline-quotes = "double"
+
+[tool.ruff.lint.isort]
+known-first-party = ["ttg"]
+known-third-party = ["ruff"]
+combine-as-imports = true
+split-on-trailing-comma = false
+relative-imports-order = "closest-to-furthest"
+lines-after-imports = 2
+
+[tool.ruff.lint.pylint]
+allow-magic-value-types = ["str", "bytes"]
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+# Like Black, indent with 4 spaces.
+indent-style = "space"
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+# Enable auto-formatting of code examples in docstrings
+docstring-code-format = true
